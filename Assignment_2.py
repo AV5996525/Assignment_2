@@ -14,26 +14,41 @@ items = {
     6: {"Poutine" : 5.00},
 }
 print(items[2]['Hot dog'])
-cOrderTotal = {"Name":[],"Quantity":[]}
-
+cOrderTotal1 = {"Name":[],"Quantity":[]}
+cOrderTotal2 = {"Name":[],"Quantity":[]}
+cOrderTotal3 = {"Name":[],"Quantity":[]}
+cOrderTotal4 = {"Name":[],"Quantity":[]}
+cOrderTotal5 = {"Name":[],"Quantity":[]}
+cOrderTotal6 = {"Name":[],"Quantity":[]}
 
 def mm ():
     cOrderSel = str(input("Welcome friends"))    
     if cOrderSel == '1' : 
-        cOrderTotal["Name"].append("Grilled cheese")
+        cOrderTotal1["Name"].append("Grilled cheese")
+        cOrderTotal1["Quantity"].append(1)
     if cOrderSel == '2' : 
-        cOrderTotal["Name"].append("Hot dog")
-        cOrderTotal["Quantity"].append(1)
-        print(str(cOrderTotal))
+        cOrderTotal2["Name"].append("Hot dog")
+        cOrderTotal2["Quantity"].append(1)
+        print(str(cOrderTotal2))
     if cOrderSel == '3' : 
-        cOrderTotal["Name"].append("Sushi")
+        cOrderTotal3["Name"].append("Sushi")
+        cOrderTotal3["Quantity"].append(1)
     if cOrderSel == '4' : 
-        cOrderTotal["Name"].append("Butter chicken")
+        cOrderTotal4["Name"].append("Butter chicken")
+        cOrderTotal4["Quantity"].append(1)
     if cOrderSel == '5' : 
-        cOrderTotal["Name"].append("Greek salad")
+        cOrderTotal5["Name"].append("Greek salad")
+        cOrderTotal5["Quantity"].append(1)
     if cOrderSel == '6' :
-        cOrderTotal["Name"].append("Poutine")
-    return cOrderTotal
+        cOrderTotal6["Name"].append("Poutine")
+        cOrderTotal6["Quantity"].append(1)
+    if cOrderSel == "C" :
+        confirm1 = input("Are you sure you want to check out")
+        if confirm1 == "Y":
+            final = (sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])
+            print(final)
+    return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6
+    
 
 while True:
     mm()
