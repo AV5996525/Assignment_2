@@ -1,9 +1,25 @@
-def gc () : 
-    cOrderTotal["Name"].append("Grilled Cheese")
-    cOrderTotal["Quantity"].append(1)
-    print(cOrderTotal)
-    return cOrderTotal
+#final = (sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])
+
+#print(final)
+
+#print(items[2]['Hot dog'])
+
+#def gc () : 
+    #cOrderTotal["Name"].append("Grilled Cheese")
+    #cOrderTotal["Quantity"].append(1)
+    #print(cOrderTotal)
+    #return cOrderTotal
+dc = 5
+def delivy (x) :
+    deliv = input("Would you like to have this order delivered?")
+    if deliv == "Y" :
+        subT = dc + (x)
+    if deliv == "N" :
+        subT = (x) - dc
+    print(subT)    
+    return subT
 cOrderTotal = {}
+
 items = {}
 items = {
     1: {"Grilled cheese": 10.00},
@@ -13,7 +29,7 @@ items = {
     5: {"Greek salad" : 6.00},
     6: {"Poutine" : 5.00},
 }
-print(items[2]['Hot dog'])
+
 cOrderTotal1 = {"Name":[],"Quantity":[]}
 cOrderTotal2 = {"Name":[],"Quantity":[]}
 cOrderTotal3 = {"Name":[],"Quantity":[]}
@@ -45,8 +61,12 @@ def mm ():
     if cOrderSel == "C" :
         confirm1 = input("Are you sure you want to check out")
         if confirm1 == "Y":
+            subT = ''
             final = (sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])
-            print(final)
+            delivy(x = final)
+            
+        elif confirm1 == "N":            
+            mm() 
     return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6
     
 
