@@ -9,24 +9,44 @@
     #cOrderTotal["Quantity"].append(1)
     #print(cOrderTotal)
     #return cOrderTotal
-dc = 5
+def tipC(J,K):
+    if (J) == 10 :
+        tipA = .10 * (K) 
+    if (J) == 15 :
+        tipA = .15 * (K) 
+    if (J) == 20 :
+        tipA = .20 * (K)
+    print(tipA , "the tip")
+    return tipA 
 def delivy (x) :
     deliv = input("Would you like to have this order delivered?")
     if deliv == "Y" :
-        subT = dc + (x)
+        subT = 5 + (x)
         if (subT) > 500:
             discnt15 = (.15*(subT))
-            grand = ((subT) - discnt15)
+            grand = ((subT) - discnt15 -5) 
             print(grand)
-            
+            tip = float(input("Tip the delivery person 10, 15, or 20%"))
+            tipC(tip,subT)
         elif (subT) >= 100 and 500 > (subT) :
             discnt10 = (.10*(subT))
-            grand = ((subT) - discnt10)
+            grand = ((subT) - discnt10 -5)
             print(grand)
+            tip = float(input("Tip the delivery person 10, 15, or 20%"))
+            tipC(tip,subT)
         elif (subT) < 500 :
-            discnt5 = (.05*(subT))
-            grand = ((subT) - discnt5)
-            print(grand)
+            if subT > 30:
+                discnt5 = (.05*(subT))
+                grand = ((subT) - discnt5 -5)
+                print(grand , "Grand total")
+                tip = float(input("Tip the delivery person 10, 15, or 20%"))
+                tipC(tip,subT)
+            if subT < 30:
+                discnt5 = (.05*(subT))
+                grand = ((subT) - discnt5)
+                print(grand , "Grand total")
+                tip = float(input("Tip the delivery person 10, 15, or 20%"))
+                tipC(tip,grand)
     if deliv == "N" :
         subT = (x) 
         if (subT) > 500:
@@ -57,12 +77,12 @@ def delivy (x) :
 #print(custInfo)
 items = {}
 items = {
-    1: {"Grilled cheese": 30.00},
-    2: {"Hot dog" : 25.00},
+    1: {"Grilled cheese": 14.00},
+    2: {"Hot dog" : 15.00},
     3: {"Sushi" : 17.00},
     4: {"Butter chicken" : 18.00},
-    5: {"Greek salad" : 26.00},
-    6: {"Poutine" : 25.00},
+    5: {"Greek salad" : 16.00},
+    6: {"Poutine" : 12.00},
 }
 
 cOrderTotal1 = {"Name":[],"Quantity":[]}
