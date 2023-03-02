@@ -1,9 +1,15 @@
+#Name:          Assignment_2.py
+#Author:        AJ Varatharajan
+#Date Created:  February 28, 2023
+#Date Last Modified: March 4, 2023
+#Purpose: 
+#This program will accept user input to fill out fields regarding their personal information.
+#The user will be able to select multiple items. 
+#program will ask user to confirm their order and student status. It will prompt for an appropriate entry using y, Y, n, N only.
+#If user does not confirm the order, they CAN re enter their selection.
+#A receipt will be outputted once the user completes the order.
 #final = (sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])
-
 #print(final)
-
-
-
 #def gc () : 
     #cOrderTotal["Name"].append("Grilled Cheese")
     #cOrderTotal["Quantity"].append(1)
@@ -109,8 +115,32 @@ def delivy (x) :
             new_listZ.sort()
             #[et.split(',')[0] for et in new_listZ]
             headers = ['Items', 'Quantity', 'Unit Price', 'Sub Total']    #tabulate
-
-            amp = [(cOrderTotal1["Name"][0]), (cOrderTotal2["Name"][0]), (cOrderTotal3["Name"][0]), (cOrderTotal4["Name"][0]), (cOrderTotal5["Name"][0]), (cOrderTotal6["Name"][0])]
+            CT1 = ''
+            for key in cOrderTotal1["Name"]:
+                if key not in CT1:
+                    CT1 = key
+            CT2 = ''
+            for key in cOrderTotal2["Name"]:
+                if key not in CT2:
+                    CT2 = key
+            CT3 = ''
+            for key in cOrderTotal3["Name"]:
+                if key not in CT3:
+                    CT3 = key
+            CT4 = ''
+            for key in cOrderTotal4["Name"]:
+                if key not in CT4:
+                    CT4 = key
+            CT5 = ''
+            for key in cOrderTotal5["Name"]:
+                if key not in CT5:
+                    CT5 = key
+            CT6 = ''
+            for key in cOrderTotal6["Name"]:
+                if key not in CT6:
+                    CT6 = key
+            #amp = [(cOrderTotal1["Name"]), (cOrderTotal2["Name"]), (cOrderTotal3["Name"]), (cOrderTotal4["Name"]), (cOrderTotal5["Name"]), (cOrderTotal6["Name"])]
+            amp = [CT1,CT2,CT3,CT4,CT5,CT6]
             mass = [sum(cOrderTotal1["Quantity"]), sum(cOrderTotal2["Quantity"]), sum(cOrderTotal3["Quantity"]), sum(cOrderTotal4["Quantity"]), sum(cOrderTotal5["Quantity"]), sum(cOrderTotal6["Quantity"])]    
             period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
             ecc = [((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])), ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])), ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])), ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])),((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])),((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))]                         
@@ -119,7 +149,7 @@ def delivy (x) :
             #headers2 = ['Tip','Tax', 'Grand Total']
             #table2 = zip( str(tipC(tip,subT)), str(taxTime(grand)), str(grand))
             #print(tabulate(str(tipC(tip,subT)), headers=headers2, floatfmt=".2f"))
-            print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip','Tax', 'Total','Grand Total']))
+            print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip','Tax', 'Total','Grand Total'],floatfmt=".2f"))
         elif (subT) >= 100 and 500 > (subT) :
             discnt10 = (.10*(subT))
             print("Enjoy a 10% discount on orders over $100 & a waived delivery charge of $5!")
