@@ -76,11 +76,11 @@ def mm ():
             
         elif confirm1 == "N":            
             mm() 
-    return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6, new_list    
+    return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6, new_list, taxTime, tipC   
 def taxTime(L):
     hst = .13
     tax = (L) * hst
-    print(tax)
+    
     return tax
 def tipC(J,K):
     if (J) == 10 :
@@ -89,7 +89,7 @@ def tipC(J,K):
         tipA = .15 * (K) 
     if (J) == 20 :
         tipA = .20 * (K)
-    print(tipA , "the tip")
+    
     return tipA 
 def delivy (x) :
     
@@ -98,29 +98,33 @@ def delivy (x) :
         subT =  (x)
         if (subT) > 500:
             discnt15 = (.15*(subT))
+            print("Enjoy a 15% discount on orders over $500 & a waived delivery charge of $5!")
             grand = ((subT) - discnt15 -5) 
-            print(grand)
+            
             tip = float(input("Tip the delivery person 10, 15, or 20%"))
             tipC(tip,subT)
             
             taxTime(grand)
             new_listZ = list(set(cOrderTotalX))
             new_listZ.sort()
+            #[et.split(',')[0] for et in new_listZ]
+            headers = ['Items', 'Quantity', 'Unit Price', 'Sub Total']    #tabulate
 
-            
-            headers = ['Items', 'Quantity', 'Unit Price', 'Sub Total', 'Grand total']    #tabulate
-#[et.split(',')[0] for et in new_listZ]
             amp = [(cOrderTotal1["Name"][0]), (cOrderTotal2["Name"][0]), (cOrderTotal3["Name"][0]), (cOrderTotal4["Name"][0]), (cOrderTotal5["Name"][0]), (cOrderTotal6["Name"][0])]
             mass = [sum(cOrderTotal1["Quantity"]), sum(cOrderTotal2["Quantity"]), sum(cOrderTotal3["Quantity"]), sum(cOrderTotal4["Quantity"]), sum(cOrderTotal5["Quantity"]), sum(cOrderTotal6["Quantity"])]    
             period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
-            ecc = ['', '', '', '','','']  
-            ecc2 = ['', '', '', '','','']              
-            table = zip(amp, mass, period, ecc, ecc2)
-            print(tabulate(table, headers=headers, floatfmt=".4f"))
+            ecc = [((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])), ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])), ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])), ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])),((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])),((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))]                         
+            table = zip(amp, mass, period, ecc)
+            print(tabulate(table, headers=headers, floatfmt=".2f"))
+            #headers2 = ['Tip','Tax', 'Grand Total']
+            #table2 = zip( str(tipC(tip,subT)), str(taxTime(grand)), str(grand))
+            #print(tabulate(str(tipC(tip,subT)), headers=headers2, floatfmt=".2f"))
+            print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip','Tax', 'Total','Grand Total']))
         elif (subT) >= 100 and 500 > (subT) :
             discnt10 = (.10*(subT))
+            print("Enjoy a 10% discount on orders over $100 & a waived delivery charge of $5!")
             grand = ((subT) - discnt10 -5)
-            print(grand)
+            
             tip = float(input("Tip the delivery person 10, 15, or 20%"))
             tipC(tip,subT)
             taxTime(grand)
@@ -129,7 +133,7 @@ def delivy (x) :
             if subT > 30:
                 discnt5 = (.05*(subT))
                 grand = ((subT) - discnt5 -5)
-                print(grand , "Grand total")
+                print("Enjoy a 5% discount on orders under $100 & a waived delivery charge of $5!")
                 tip = float(input("Tip the delivery person 10, 15, or 20%"))
                 tipC(tip,subT)
                 taxTime(grand)
@@ -137,7 +141,7 @@ def delivy (x) :
             if subT < 30:
                 discnt5 = (.05*(subT))
                 grand = ((subT) - discnt5 + 5)
-                print(grand , "Grand total")
+                print("Enjoy a 5% discount on orders under $100")
                 tip = float(input("Tip the delivery person 10, 15, or 20%"))
                 tipC(tip,subT)
                 taxTime(grand)
@@ -147,22 +151,22 @@ def delivy (x) :
         subT = (x) 
         if (subT) > 500:
             discnt15 = (.15*(subT))
+            print("Enjoy a 15% discount on orders over $500")
             grand = ((subT) - discnt15)
-            print(grand)
+            
             taxTime(grand)
         elif (subT) >= 100 and 500 > (subT) :
             discnt10 = (.10*(subT))
             grand = ((subT) - discnt10)
-            print(grand)
+            print("Enjoy a 10% discount on orders over $100")
             taxTime(grand)
         elif (subT) < 500 :
             discnt5 = (.05*(subT))
             grand = ((subT) - discnt5)
-            print(grand)
+            print("Enjoy a 5% discount on orders under $100")
             taxTime(grand)
-    print(subT)    
-    print(type(subT))
-    return float(subT)
+    
+    return float(subT) , taxTime, tipC 
 
 #custInfo = {"Name":[], "Phone":[], "City":[], "Province":[], "Postal Code":[], "Address":[],"Instructions":[]}
 #custInfo["Name"].append(input("Enter your name:"))
