@@ -15,6 +15,7 @@
     #cOrderTotal["Quantity"].append(1)
     #print(cOrderTotal)
     #return cOrderTotal
+
 new_list = []
 from tabulate import tabulate
 def mm ():
@@ -78,7 +79,7 @@ def mm ():
                 subT = 0
                 final = (((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])) + ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])) + ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])) + ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])) + ((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])) + ((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine'])))
                 delivy(x = final)   
-                break
+                continue
                 
             elif confirm1 == "N" or confirm1 == "n" :            
                 mm() 
@@ -107,105 +108,115 @@ def tipC(J,K):
     
     return tipA 
 def delivy (x) :
-    
-    deliv = input("Would you like to have this order delivered?")
-    if deliv == "Y" :
-        subT =  (x)
-        if (subT) > 500:
-            discnt15 = (.15*(subT))
-            print("Enjoy a 15% discount on orders over $500 & a waived delivery charge of $5!")
-            grand = ((subT) - discnt15 -5) 
+
+ while True :
+        deliv = input("Would you like to have this order delivered?")
+        if deliv == "Y" :
             
-            tip = float(input("Tip the delivery person 10, 15, or 20%"))
-            tipC(tip,subT)
-            
-            taxTime(grand)
-            new_listZ = list(set(cOrderTotalX))
-            new_listZ.sort()
-            #[et.split(',')[0] for et in new_listZ]
-            headers = ['Items', 'Quantity', 'Unit Price', 'Sub Total']    #tabulate
-            CT1 = ''
-            for key in cOrderTotal1["Name"]:
-                if key not in CT1:
-                    CT1 = key
-            CT2 = ''
-            for key in cOrderTotal2["Name"]:
-                if key not in CT2:
-                    CT2 = key
-            CT3 = ''
-            for key in cOrderTotal3["Name"]:
-                if key not in CT3:
-                    CT3 = key
-            CT4 = ''
-            for key in cOrderTotal4["Name"]:
-                if key not in CT4:
-                    CT4 = key
-            CT5 = ''
-            for key in cOrderTotal5["Name"]:
-                if key not in CT5:
-                    CT5 = key
-            CT6 = ''
-            for key in cOrderTotal6["Name"]:
-                if key not in CT6:
-                    CT6 = key
-            #amp = [(cOrderTotal1["Name"]), (cOrderTotal2["Name"]), (cOrderTotal3["Name"]), (cOrderTotal4["Name"]), (cOrderTotal5["Name"]), (cOrderTotal6["Name"])]
-            amp = [CT1,CT2,CT3,CT4,CT5,CT6]
-            mass = [sum(cOrderTotal1["Quantity"]), sum(cOrderTotal2["Quantity"]), sum(cOrderTotal3["Quantity"]), sum(cOrderTotal4["Quantity"]), sum(cOrderTotal5["Quantity"]), sum(cOrderTotal6["Quantity"])]    
-            period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
-            ecc = [((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])), ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])), ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])), ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])),((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])),((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))]                         
-            table = zip(amp, mass, period, ecc)
-            print(tabulate(table, headers=headers, floatfmt=".2f"))
-            #headers2 = ['Tip','Tax', 'Grand Total']
-            #table2 = zip( str(tipC(tip,subT)), str(taxTime(grand)), str(grand))
-            #print(tabulate(str(tipC(tip,subT)), headers=headers2, floatfmt=".2f"))
-            print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip','Tax', 'Total','Grand Total'],floatfmt=".2f"))
-        elif (subT) >= 100 and 500 > (subT) :
-            discnt10 = (.10*(subT))
-            print("Enjoy a 10% discount on orders over $100 & a waived delivery charge of $5!")
-            grand = ((subT) - discnt10 -5)
-            
-            tip = float(input("Tip the delivery person 10, 15, or 20%"))
-            tipC(tip,subT)
-            taxTime(grand)
-           
-        elif (subT) < 500 :
-            if subT > 30:
-                discnt5 = (.05*(subT))
-                grand = ((subT) - discnt5 -5)
-                print("Enjoy a 5% discount on orders under $100 & a waived delivery charge of $5!")
+            subT =  (x)
+            if (subT) > 500:
+                discnt15 = (.15*(subT))
+                print("Enjoy a 15% discount on orders over $500 & a waived delivery charge of $5!")
+                grand = ((subT) - discnt15 -5) 
+                
+                tip = float(input("Tip the delivery person 10, 15, or 20%"))
+                tipC(tip,subT)
+                
+                taxTime(grand)
+                new_listZ = list(set(cOrderTotalX))
+                new_listZ.sort()
+                #[et.split(',')[0] for et in new_listZ]
+                headers = ['Items', 'Quantity', 'Unit Price', 'Sub Total']    #tabulate
+                CT1 = ''
+                for key in cOrderTotal1["Name"]:
+                    if key not in CT1:
+                        CT1 = key
+                CT2 = ''
+                for key in cOrderTotal2["Name"]:
+                    if key not in CT2:
+                        CT2 = key
+                CT3 = ''
+                for key in cOrderTotal3["Name"]:
+                    if key not in CT3:
+                        CT3 = key
+                CT4 = ''
+                for key in cOrderTotal4["Name"]:
+                    if key not in CT4:
+                        CT4 = key
+                CT5 = ''
+                for key in cOrderTotal5["Name"]:
+                    if key not in CT5:
+                        CT5 = key
+                CT6 = ''
+                for key in cOrderTotal6["Name"]:
+                    if key not in CT6:
+                        CT6 = key
+                #amp = [(cOrderTotal1["Name"]), (cOrderTotal2["Name"]), (cOrderTotal3["Name"]), (cOrderTotal4["Name"]), (cOrderTotal5["Name"]), (cOrderTotal6["Name"])]
+                amp = [CT1,CT2,CT3,CT4,CT5,CT6]
+                mass = [sum(cOrderTotal1["Quantity"]), sum(cOrderTotal2["Quantity"]), sum(cOrderTotal3["Quantity"]), sum(cOrderTotal4["Quantity"]), sum(cOrderTotal5["Quantity"]), sum(cOrderTotal6["Quantity"])]    
+                period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
+                ecc = [((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])), ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])), ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])), ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])),((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])),((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))]                         
+                table = zip(amp, mass, period, ecc)
+                print(tabulate(table, headers=headers, floatfmt=".2f"))
+                #headers2 = ['Tip','Tax', 'Grand Total']
+                #table2 = zip( str(tipC(tip,subT)), str(taxTime(grand)), str(grand))
+                #print(tabulate(str(tipC(tip,subT)), headers=headers2, floatfmt=".2f"))
+                print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip','Tax', 'Total','Grand Total'],floatfmt=".2f"))
+                
+            elif (subT) >= 100 and 500 > (subT) :
+                discnt10 = (.10*(subT))
+                print("Enjoy a 10% discount on orders over $100 & a waived delivery charge of $5!")
+                grand = ((subT) - discnt10 -5)
+                
                 tip = float(input("Tip the delivery person 10, 15, or 20%"))
                 tipC(tip,subT)
                 taxTime(grand)
                 
-            if subT < 30:
+            
+            elif (subT) < 500 :
+                if subT > 30:
+                    discnt5 = (.05*(subT))
+                    grand = ((subT) - discnt5 -5)
+                    print("Enjoy a 5% discount on orders under $100 & a waived delivery charge of $5!")
+                    tip = float(input("Tip the delivery person 10, 15, or 20%"))
+                    tipC(tip,subT)
+                    taxTime(grand)
+                    
+                if subT < 30:
+                    discnt5 = (.05*(subT))
+                    grand = ((subT) - discnt5 + 5)
+                    print("Enjoy a 5% discount on orders under $100")
+                    tip = float(input("Tip the delivery person 10, 15, or 20%"))
+                    tipC(tip,subT)
+                    taxTime(grand)
+            break   
+                    
+        if deliv == "N" :
+            
+            subT = (x) 
+            if (subT) > 500:
+                discnt15 = (.15*(subT))
+                print("Enjoy a 15% discount on orders over $500")
+                grand = ((subT) - discnt15)
+                
+                taxTime(grand)
+            elif (subT) >= 100 and 500 > (subT) :
+                discnt10 = (.10*(subT))
+                grand = ((subT) - discnt10)
+                print("Enjoy a 10% discount on orders over $100")
+                taxTime(grand)
+            elif (subT) < 500 :
                 discnt5 = (.05*(subT))
-                grand = ((subT) - discnt5 + 5)
+                grand = ((subT) - discnt5)
                 print("Enjoy a 5% discount on orders under $100")
-                tip = float(input("Tip the delivery person 10, 15, or 20%"))
-                tipC(tip,subT)
                 taxTime(grand)
-                
-                
-    if deliv == "N" :
-        subT = (x) 
-        if (subT) > 500:
-            discnt15 = (.15*(subT))
-            print("Enjoy a 15% discount on orders over $500")
-            grand = ((subT) - discnt15)
-            
-            taxTime(grand)
-        elif (subT) >= 100 and 500 > (subT) :
-            discnt10 = (.10*(subT))
-            grand = ((subT) - discnt10)
-            print("Enjoy a 10% discount on orders over $100")
-            taxTime(grand)
-        elif (subT) < 500 :
-            discnt5 = (.05*(subT))
-            grand = ((subT) - discnt5)
-            print("Enjoy a 5% discount on orders under $100")
-            taxTime(grand)
-    
-    return float(subT) , taxTime, tipC 
+            break
+        elif deliv.isdigit() :
+                print("Invalid response. No numbers!")   
+        elif deliv != "N" and deliv != "n" and deliv != "Y" and deliv != "y":     
+                print("Invalid response, please select choice 'Y' or 'N'.")
+        
+        return  taxTime, tipC 
 
 #custInfo = {"Name":[], "Phone":[], "City":[], "Province":[], "Postal Code":[], "Address":[],"Instructions":[]}
 #custInfo["Name"].append(input("Enter your name:"))
