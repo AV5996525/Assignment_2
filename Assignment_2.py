@@ -14,31 +14,55 @@ def delivy (x) :
     deliv = input("Would you like to have this order delivered?")
     if deliv == "Y" :
         subT = dc + (x)
+        if (subT) > 500:
+            discnt15 = (.15*(subT))
+            grand = ((subT) - discnt15)
+            print(grand)
+            
+        elif (subT) >= 100 and 500 > (subT) :
+            discnt10 = (.10*(subT))
+            grand = ((subT) - discnt10)
+            print(grand)
+        elif (subT) < 500 :
+            discnt5 = (.05*(subT))
+            grand = ((subT) - discnt5)
+            print(grand)
     if deliv == "N" :
-        subT = (x) - dc
+        subT = (x) 
+        if (subT) > 500:
+            discnt15 = (.15*(subT))
+            grand = ((subT) - discnt15)
+            print(grand)
+            
+        elif (subT) >= 100 and 500 > (subT) :
+            discnt10 = (.10*(subT))
+            grand = ((subT) - discnt10)
+            print(grand)
+        elif (subT) < 500 :
+            discnt5 = (.05*(subT))
+            grand = ((subT) - discnt5)
+            print(grand)
     print(subT)    
-    return subT
-def discount (y):
-    if y > 500:
-        discnt15 = (.15*y)
-        grand15 = (y - discnt15)
-    elif y >= 100 and 500 > y :
-        discnt10 = (.10*y)
-        grand10 = (y - discnt10)
-    elif y < 500 :
-        discnt5 = (.05*y)
-        grand5 = (y - discnt5)
-    return grand15, grand10, grand5
-cOrderTotal = {}
+    print(type(subT))
+    return float(subT)
 
+#custInfo = {"Name":[], "Phone":[], "City":[], "Province":[], "Postal Code":[], "Address":[],"Instructions":[]}
+#custInfo["Name"].append(input("Enter your name:"))
+#custInfo["Phone"].append(input("Enter your name:"))
+#custInfo["City"].append(input("Enter your name:"))
+#custInfo["Province"].append(input("Enter your name:"))
+#custInfo["Postal Code"].append(input("Enter your name:"))
+#custInfo["Address"].append(input("Enter your name:"))
+#custInfo["Instructions"].append(input("Enter your name:"))
+#print(custInfo)
 items = {}
 items = {
-    1: {"Grilled cheese": 10.00},
-    2: {"Hot dog" : 5.00},
-    3: {"Sushi" : 7.00},
-    4: {"Butter chicken" : 8.00},
-    5: {"Greek salad" : 6.00},
-    6: {"Poutine" : 5.00},
+    1: {"Grilled cheese": 30.00},
+    2: {"Hot dog" : 25.00},
+    3: {"Sushi" : 17.00},
+    4: {"Butter chicken" : 18.00},
+    5: {"Greek salad" : 26.00},
+    6: {"Poutine" : 25.00},
 }
 
 cOrderTotal1 = {"Name":[],"Quantity":[]}
@@ -52,34 +76,42 @@ def mm ():
     cOrderSel = str(input("Welcome friends"))    
     if cOrderSel == '1' : 
         cOrderTotal1["Name"].append("Grilled cheese")
-        cOrderTotal1["Quantity"].append(1)
+        a = int(input("How many"))
+        cOrderTotal1["Quantity"].append(a)
     if cOrderSel == '2' : 
         cOrderTotal2["Name"].append("Hot dog")
-        cOrderTotal2["Quantity"].append(1)
+        b = int(input("How many"))
+        cOrderTotal2["Quantity"].append(b)
         print(str(cOrderTotal2))
     if cOrderSel == '3' : 
         cOrderTotal3["Name"].append("Sushi")
-        cOrderTotal3["Quantity"].append(1)
+        c = int(input("How many"))
+        cOrderTotal3["Quantity"].append(c)
     if cOrderSel == '4' : 
         cOrderTotal4["Name"].append("Butter chicken")
-        cOrderTotal4["Quantity"].append(1)
+        d = int(input("How many"))
+        cOrderTotal4["Quantity"].append(d)
     if cOrderSel == '5' : 
         cOrderTotal5["Name"].append("Greek salad")
-        cOrderTotal5["Quantity"].append(1)
+        e = int(input("How many"))
+        cOrderTotal5["Quantity"].append(e)
     if cOrderSel == '6' :
         cOrderTotal6["Name"].append("Poutine")
-        cOrderTotal6["Quantity"].append(1)
+        f = int(input("How many"))
+        cOrderTotal6["Quantity"].append(f)
     if cOrderSel == "C" :
         confirm1 = input("Are you sure you want to check out")
         if confirm1 == "Y":
-            subT = ''
+            subT = 0
             final = (((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])) + ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])) + ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])) + ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])) + ((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])) + ((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine'])))
             delivy(x = final)
-            discount(y=subT)
+            
+            
+            
         elif confirm1 == "N":            
             mm() 
     return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6
-    
 
 while True:
     mm()
+  
