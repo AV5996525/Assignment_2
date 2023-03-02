@@ -9,6 +9,12 @@
     #cOrderTotal["Quantity"].append(1)
     #print(cOrderTotal)
     #return cOrderTotal
+
+def taxTime(L):
+    hst = .13
+    tax = (L) * hst
+    print(tax)
+    return tax
 def tipC(J,K):
     if (J) == 10 :
         tipA = .10 * (K) 
@@ -21,19 +27,21 @@ def tipC(J,K):
 def delivy (x) :
     deliv = input("Would you like to have this order delivered?")
     if deliv == "Y" :
-        subT = 5 + (x)
+        subT =  (x)
         if (subT) > 500:
             discnt15 = (.15*(subT))
             grand = ((subT) - discnt15 -5) 
             print(grand)
             tip = float(input("Tip the delivery person 10, 15, or 20%"))
             tipC(tip,subT)
+            taxTime(grand)
         elif (subT) >= 100 and 500 > (subT) :
             discnt10 = (.10*(subT))
             grand = ((subT) - discnt10 -5)
             print(grand)
             tip = float(input("Tip the delivery person 10, 15, or 20%"))
             tipC(tip,subT)
+            taxTime(grand)
         elif (subT) < 500 :
             if subT > 30:
                 discnt5 = (.05*(subT))
@@ -41,27 +49,31 @@ def delivy (x) :
                 print(grand , "Grand total")
                 tip = float(input("Tip the delivery person 10, 15, or 20%"))
                 tipC(tip,subT)
+                taxTime(grand)
             if subT < 30:
                 discnt5 = (.05*(subT))
-                grand = ((subT) - discnt5)
+                grand = ((subT) - discnt5 + 5)
                 print(grand , "Grand total")
                 tip = float(input("Tip the delivery person 10, 15, or 20%"))
-                tipC(tip,grand)
+                tipC(tip,subT)
+                taxTime(grand)
     if deliv == "N" :
         subT = (x) 
         if (subT) > 500:
             discnt15 = (.15*(subT))
             grand = ((subT) - discnt15)
             print(grand)
-            
+            taxTime(grand)
         elif (subT) >= 100 and 500 > (subT) :
             discnt10 = (.10*(subT))
             grand = ((subT) - discnt10)
             print(grand)
+            taxTime(grand)
         elif (subT) < 500 :
             discnt5 = (.05*(subT))
             grand = ((subT) - discnt5)
             print(grand)
+            taxTime(grand)
     print(subT)    
     print(type(subT))
     return float(subT)
@@ -124,10 +136,7 @@ def mm ():
         if confirm1 == "Y":
             subT = 0
             final = (((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])) + ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])) + ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])) + ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])) + ((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])) + ((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine'])))
-            delivy(x = final)
-            
-            
-            
+            delivy(x = final)         
         elif confirm1 == "N":            
             mm() 
     return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6
