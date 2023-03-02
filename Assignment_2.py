@@ -82,6 +82,10 @@ def mm ():
             
         elif confirm1 == "N":            
             mm() 
+    elif cOrderSel.isalpha() :
+        print("Invalid response, please user numbers, not letters.")
+    else:
+        print("Invalid choice, please select choice 1,2,3,4,5,6.") 
     return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6, new_list, taxTime, tipC   
 def taxTime(L):
     hst = .13
