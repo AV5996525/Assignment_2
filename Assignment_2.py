@@ -76,10 +76,7 @@ def mm ():
             
         elif confirm1 == "N":            
             mm() 
-    return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6, new_list
-def receipt (M,N,O,P,Q,R):
-    print(tabulate([ [M],[N],[O],[P],[Q],[R] ], headers = ["Order","Item Amnt","Item Price","Total"]))
-    
+    return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6, new_list    
 def taxTime(L):
     hst = .13
     tax = (L) * hst
@@ -107,9 +104,19 @@ def delivy (x) :
             tipC(tip,subT)
             
             taxTime(grand)
-            receipt(cOrderTotalX,'a','a','a','a','a')
-            for U in cOrderTotalX:
-                print(U)
+            new_listZ = list(set(cOrderTotalX))
+            new_listZ.sort()
+
+            
+            headers = ['Items', 'Quantity', 'Unit Price', 'Sub Total', 'Grand total']    #tabulate
+#[et.split(',')[0] for et in new_listZ]
+            amp = [(cOrderTotal1["Name"][0]), (cOrderTotal2["Name"][0]), (cOrderTotal3["Name"][0]), (cOrderTotal4["Name"][0]), (cOrderTotal5["Name"][0]), (cOrderTotal6["Name"][0])]
+            mass = [sum(cOrderTotal1["Quantity"]), sum(cOrderTotal2["Quantity"]), sum(cOrderTotal3["Quantity"]), sum(cOrderTotal4["Quantity"]), sum(cOrderTotal5["Quantity"]), sum(cOrderTotal6["Quantity"])]    
+            period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
+            ecc = ['', '', '', '','','']  
+            ecc2 = ['', '', '', '','','']              
+            table = zip(amp, mass, period, ecc, ecc2)
+            print(tabulate(table, headers=headers, floatfmt=".4f"))
         elif (subT) >= 100 and 500 > (subT) :
             discnt10 = (.10*(subT))
             grand = ((subT) - discnt10 -5)
@@ -126,7 +133,7 @@ def delivy (x) :
                 tip = float(input("Tip the delivery person 10, 15, or 20%"))
                 tipC(tip,subT)
                 taxTime(grand)
-              
+                
             if subT < 30:
                 discnt5 = (.05*(subT))
                 grand = ((subT) - discnt5 + 5)
@@ -135,7 +142,7 @@ def delivy (x) :
                 tipC(tip,subT)
                 taxTime(grand)
                 
-                receipt(cOrderTotalX,'','','','','')
+                
     if deliv == "N" :
         subT = (x) 
         if (subT) > 500:
