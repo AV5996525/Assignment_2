@@ -78,7 +78,7 @@ def mm ():
             mm() 
     return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6, new_list
 def receipt (M,N,O,P,Q,R):
-    print(tabulate([ [M],[N],[O],[P],[Q],[R] ], headers = ["Order", "Item Amnt", "Item Price","Total"]))
+    print(tabulate([ [M],[N],[O],[P],[Q],[R] ], headers = ["Order","Item Amnt","Item Price","Total"]))
     
 def taxTime(L):
     hst = .13
@@ -105,9 +105,11 @@ def delivy (x) :
             print(grand)
             tip = float(input("Tip the delivery person 10, 15, or 20%"))
             tipC(tip,subT)
-            taxTime(grand)
-            receipt(cOrderTotal1.get("Name"),cOrderTotal2.get("Name"),cOrderTotal3.get("Name"),cOrderTotal4.get("Name"),cOrderTotal5.get("Name"),cOrderTotal6.get("Name"))
             
+            taxTime(grand)
+            receipt(cOrderTotalX,'a','a','a','a','a')
+            for U in cOrderTotalX:
+                print(U)
         elif (subT) >= 100 and 500 > (subT) :
             discnt10 = (.10*(subT))
             grand = ((subT) - discnt10 -5)
@@ -115,7 +117,7 @@ def delivy (x) :
             tip = float(input("Tip the delivery person 10, 15, or 20%"))
             tipC(tip,subT)
             taxTime(grand)
-            receipt(cOrderTotal1,cOrderTotal2,cOrderTotal3,cOrderTotal4,cOrderTotal5,cOrderTotal6)
+           
         elif (subT) < 500 :
             if subT > 30:
                 discnt5 = (.05*(subT))
@@ -124,7 +126,7 @@ def delivy (x) :
                 tip = float(input("Tip the delivery person 10, 15, or 20%"))
                 tipC(tip,subT)
                 taxTime(grand)
-                receipt(cOrderTotal1,cOrderTotal2,cOrderTotal3,cOrderTotal4,cOrderTotal5,cOrderTotal6)
+              
             if subT < 30:
                 discnt5 = (.05*(subT))
                 grand = ((subT) - discnt5 + 5)
@@ -132,7 +134,8 @@ def delivy (x) :
                 tip = float(input("Tip the delivery person 10, 15, or 20%"))
                 tipC(tip,subT)
                 taxTime(grand)
-                receipt(cOrderTotal1,cOrderTotal2,cOrderTotal3,cOrderTotal4,cOrderTotal5,cOrderTotal6)
+                
+                receipt(cOrderTotalX,'','','','','')
     if deliv == "N" :
         subT = (x) 
         if (subT) > 500:
