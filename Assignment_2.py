@@ -20,7 +20,7 @@ from tabulate import tabulate
 def mm ():
     new_list = []
     
-    cOrderSel = str(input("Welcome friends"))    
+    cOrderSel = str(input("Welcome friends").strip())    
     if cOrderSel == '1' : 
         cOrderTotal1["Name"].append("Grilled cheese")
         a = int(input("How many"))
@@ -65,27 +65,32 @@ def mm ():
         if f > 0:
            
             cOrderTotalX.append("Poutine")
-    if cOrderSel == "C" :
+    if cOrderSel == "C" or cOrderSel == "c":
         
        
         new_list = list(set(cOrderTotalX)) #removing duplicate by converting to set then list
 
         print(new_list)
-
-        confirm1 = input("Are you sure you want to check out")
-        
-        if confirm1 == "Y":
-            subT = 0
-            final = (((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])) + ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])) + ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])) + ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])) + ((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])) + ((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine'])))
-            delivy(x = final)   
+        while True:
+            confirm1 = input("Are you sure you want to check out")
             
-            
-        elif confirm1 == "N":            
-            mm() 
+            if confirm1 == "Y" or confirm1 == "y":
+                subT = 0
+                final = (((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])) + ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])) + ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])) + ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])) + ((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])) + ((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine'])))
+                delivy(x = final)   
+                break
+                
+            elif confirm1 == "N" or confirm1 == "n" :            
+                mm() 
+            elif confirm1.isdigit() :
+                print("Invalid response. No numbers!")   
+            elif confirm1 != "N" and confirm1 != "n" and confirm1 != "Y" or confirm1 != "y":     
+                print("Invalid response, please select choice 'Y' or 'N'.")
     elif cOrderSel.isalpha() :
-        print("Invalid response, please user numbers, not letters.")
-    else:
-        print("Invalid choice, please select choice 1,2,3,4,5,6.") 
+        print("Invalid response. No letters!")
+    elif cOrderSel != '1' and cOrderSel != '2' and cOrderSel != '3' and cOrderSel != '4' and cOrderSel != '5' and cOrderSel != '6':
+        print("Invalid response, please select choice 1,2,3,4,5,6.")
+    
     return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6, new_list, taxTime, tipC   
 def taxTime(L):
     hst = .13
