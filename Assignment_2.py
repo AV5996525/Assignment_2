@@ -18,6 +18,17 @@ def delivy (x) :
         subT = (x) - dc
     print(subT)    
     return subT
+def discount (y):
+    if y > 500:
+        discnt15 = (.15*y)
+        grand15 = (y - discnt15)
+    elif y >= 100 and 500 > y :
+        discnt10 = (.10*y)
+        grand10 = (y - discnt10)
+    elif y < 500 :
+        discnt5 = (.05*y)
+        grand5 = (y - discnt5)
+    return grand15, grand10, grand5
 cOrderTotal = {}
 
 items = {}
@@ -62,9 +73,9 @@ def mm ():
         confirm1 = input("Are you sure you want to check out")
         if confirm1 == "Y":
             subT = ''
-            final = (sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])
+            final = (((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])) + ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])) + ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])) + ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])) + ((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])) + ((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine'])))
             delivy(x = final)
-            
+            discount(y=subT)
         elif confirm1 == "N":            
             mm() 
     return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6
