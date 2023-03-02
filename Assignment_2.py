@@ -189,7 +189,7 @@ def delivy (x) :
                     tip = float(input("Tip the delivery person 10, 15, or 20%"))
                     tipC(tip,subT)
                     taxTime(grand)
-            break   
+             
                     
         if deliv == "N" :
             
