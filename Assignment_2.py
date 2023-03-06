@@ -4,7 +4,7 @@
 #Date Last Modified: March 4, 2023
 #Purpose: 
 #This program will accept user input to fill out fields regarding their personal information.
-#The user will be able to select multiple items. 
+#The user will be able to select MULTIPLE items. 
 #program will ask user to confirm their order and student status. It will prompt for an appropriate entry using y, Y, n, N only.
 #If user does not confirm the order, they CAN re enter their selection.
 #A receipt will be outputted once the user completes the order.
@@ -24,47 +24,47 @@ def mm (): # creating main menu function
     
     
     cOrderSel = str(input("Welcome friends").strip())    #order selection and user input
-    if cOrderSel == '1' : 
+    if cOrderSel == '1' : #menu item number 1
         cOrderTotal1["Name"].append("Grilled cheese") #adding entry to dictionary for order selection 
-        a = int(input("How many"))
+        a = int(input("How many")) #prompting for user input for quantity
         
-        cOrderTotal1["Quantity"].append(a)
+        cOrderTotal1["Quantity"].append(a) #increasing quantity per item if user inputs 1
         if a > 0:
             
             cOrderTotalX.append("Grilled cheese")
-    if cOrderSel == '2' : 
+    if cOrderSel == '2' : #menu item number 2
         cOrderTotal2["Name"].append("Hot dog")
         b = int(input("How many"))
-        cOrderTotal2["Quantity"].append(b)
+        cOrderTotal2["Quantity"].append(b) #increasing quantity per item if user inputs 2
         print(str(cOrderTotal2))
         if b > 0:
            
             cOrderTotalX.append("Hot dog")
-    if cOrderSel == '3' : 
+    if cOrderSel == '3' : #menu item number 3
         cOrderTotal3["Name"].append("Sushi")
         c = int(input("How many"))
-        cOrderTotal3["Quantity"].append(c)
+        cOrderTotal3["Quantity"].append(c) #increasing quantity per item if user inputs 3
         if c > 0:
             
             cOrderTotalX.append("Sushi")
-    if cOrderSel == '4' : 
+    if cOrderSel == '4' : #menu item number 4
         cOrderTotal4["Name"].append("Butter chicken")
         d = int(input("How many"))
-        cOrderTotal4["Quantity"].append(d)
+        cOrderTotal4["Quantity"].append(d) #increasing quantity per item if user inputs 4
         if d > 0:
             
             cOrderTotalX.append("Butter chicken")
-    if cOrderSel == '5' : 
+    if cOrderSel == '5' : #menu item number 5
         cOrderTotal5["Name"].append("Greek salad")
         e = int(input("How many"))
-        cOrderTotal5["Quantity"].append(e)
+        cOrderTotal5["Quantity"].append(e) #increasing quantity per item if user inputs 5
         if e > 0:
             
             cOrderTotalX.append("Greek salad")
-    if cOrderSel == '6' :
+    if cOrderSel == '6' : #menu item number 6
         cOrderTotal6["Name"].append("Poutine")
         f = int(input("How many"))
-        cOrderTotal6["Quantity"].append(f)
+        cOrderTotal6["Quantity"].append(f) #increasing quantity per item if user inputs 6
         if f > 0:
            
             cOrderTotalX.append("Poutine")
@@ -79,28 +79,28 @@ def mm (): # creating main menu function
             
             if confirm1 == "Y" or confirm1 == "y":
                 subT = 0
-                final = (((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])) + ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])) + ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])) + ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])) + ((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])) + ((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine'])))
-                delivy(x = final)   
+                final = (((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])) + ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])) + ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])) + ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])) + ((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])) + ((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))) #sub total calculation
+                delivy(x = final)   #passing subtotal amount through delivery function
                 continue
                 
             elif confirm1 == "N" or confirm1 == "n" :            
                 mm() 
-            elif confirm1.isdigit() :
+            elif confirm1.isdigit() : #user input filtering
                 print("Invalid response. No numbers!")   
             elif confirm1 != "N" and confirm1 != "n" and confirm1 != "Y" or confirm1 != "y":     
                 print("Invalid response, please select choice 'Y' or 'N'.")
-    elif cOrderSel.isalpha() :
+    elif cOrderSel.isalpha() : #user input filtering
         print("Invalid response. No letters!")
     elif cOrderSel != '1' and cOrderSel != '2' and cOrderSel != '3' and cOrderSel != '4' and cOrderSel != '5' and cOrderSel != '6':
         print("Invalid response, please select choice 1,2,3,4,5,6.")
     
     return cOrderTotal1, cOrderTotal2, cOrderTotal3, cOrderTotal4, cOrderTotal5, cOrderTotal6, new_list, taxTime, tipC   
-def taxTime(L):
+def taxTime(L): #tax calculator
     hst = .13
     tax = (L) * hst
     
     return tax
-def tipC(J,K):
+def tipC(J,K): #tip calculator
     if (J) == 10 :
         tipA = .10 * (K) 
     if (J) == 15 :
@@ -109,17 +109,17 @@ def tipC(J,K):
         tipA = .20 * (K)
     
     return tipA 
-def delivy (x) :
+def delivy (x) : #final delivery/discount calculator
 
  while True :
-        deliv = input("Would you like to have this order delivered?")
+        deliv = input("Would you like to have this order delivered?") #Asking user for delivery confirmation
         if deliv == "Y" :
             
             subT =  (x)
-            if (subT) > 500:
+            if (subT) > 500: #discount threshold
                 discnt15 = (.15*(subT))
                 print("Enjoy a 15% discount on orders over $500 & a waived delivery charge of $5!")
-                grand = ((subT) - discnt15 -5) 
+                grand = ((subT) - discnt15 -5)  #discount and  delivery calculation
                 
                 tip = float(input("Tip the delivery person 10, 15, or 20%"))
                 tipC(tip,subT)
@@ -154,18 +154,18 @@ def delivy (x) :
                     if key not in CT6:
                         CT6 = key
                 
-                amp = [CT1,CT2,CT3,CT4,CT5,CT6]
-                mass = [sum(cOrderTotal1["Quantity"]), sum(cOrderTotal2["Quantity"]), sum(cOrderTotal3["Quantity"]), sum(cOrderTotal4["Quantity"]), sum(cOrderTotal5["Quantity"]), sum(cOrderTotal6["Quantity"])]    
+                amp = [CT1,CT2,CT3,CT4,CT5,CT6] #item names in a column
+                mass = [sum(cOrderTotal1["Quantity"]), sum(cOrderTotal2["Quantity"]), sum(cOrderTotal3["Quantity"]), sum(cOrderTotal4["Quantity"]), sum(cOrderTotal5["Quantity"]), sum(cOrderTotal6["Quantity"])]    #item quantity in column
                 period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
                 ecc = [((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])), ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])), ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])), ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])),((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])),((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))]                         
                 table = zip(amp, mass, period, ecc)
-                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Requests"]
+                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Requests"] #customer information headers
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
                 print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand), str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip','Tax', 'Total','Grand Total'],floatfmt=".2f"))
                 
-            elif (subT) >= 100 and 500 > (subT) :
+            elif (subT) >= 100 and 500 > (subT) : #discount threshold
                 discnt10 = (.10*(subT))
                 print("Enjoy a 10% discount on orders over $100 & a waived delivery charge of $5!")
                 grand = ((subT) - discnt10 -5)
@@ -175,31 +175,31 @@ def delivy (x) :
                 taxTime(grand)
                 headers = ['Items', 'Quantity', 'Unit Price', 'Sub Total']    #tabulate
                 CT1 = ''
-                for key in cOrderTotal1["Name"]:
+                for key in cOrderTotal1["Name"]: #cycling through each entry and deleting dupliocates
                     if key not in CT1:
                         CT1 = key
                 CT2 = ''
-                for key in cOrderTotal2["Name"]:
+                for key in cOrderTotal2["Name"]: #cycling through each entry and deleting dupliocates
                     if key not in CT2:
                         CT2 = key
                 CT3 = ''
-                for key in cOrderTotal3["Name"]:
+                for key in cOrderTotal3["Name"]: #cycling through each entry and deleting dupliocates
                     if key not in CT3:
                         CT3 = key
                 CT4 = ''
-                for key in cOrderTotal4["Name"]:
+                for key in cOrderTotal4["Name"]: #cycling through each entry and deleting dupliocates
                     if key not in CT4:
                         CT4 = key
                 CT5 = ''
-                for key in cOrderTotal5["Name"]:
+                for key in cOrderTotal5["Name"]: #cycling through each entry and deleting dupliocates
                     if key not in CT5:
                         CT5 = key
                 CT6 = ''
-                for key in cOrderTotal6["Name"]:
+                for key in cOrderTotal6["Name"]: #cycling through each entry and deleting dupliocates
                     if key not in CT6:
                         CT6 = key
               
-                amp = [CT1,CT2,CT3,CT4,CT5,CT6]
+                amp = [CT1,CT2,CT3,CT4,CT5,CT6] #item names in column
                 mass = [sum(cOrderTotal1["Quantity"]), sum(cOrderTotal2["Quantity"]), sum(cOrderTotal3["Quantity"]), sum(cOrderTotal4["Quantity"]), sum(cOrderTotal5["Quantity"]), sum(cOrderTotal6["Quantity"])]    
                 period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
                 ecc = [((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])), ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])), ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])), ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])),((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])),((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))]                         
@@ -210,7 +210,7 @@ def delivy (x) :
                 
                 print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip','Tax', 'Total','Grand Total'],floatfmt=".2f"))
             
-            elif (subT) < 500 :
+            elif (subT) < 500 : #discount threshold for orders over $500
                 if subT > 30:
                     discnt5 = (.05*(subT))
                     grand = ((subT) - discnt5 -5)
@@ -220,27 +220,27 @@ def delivy (x) :
                     taxTime(grand)
                     headers = ['Items', 'Quantity', 'Unit Price', 'Sub Total']    #tabulate
                     CT1 = ''
-                    for key in cOrderTotal1["Name"]:
+                    for key in cOrderTotal1["Name"]: #cycling through each entry and deleting dupliocates
                         if key not in CT1:
                             CT1 = key
                     CT2 = ''
-                    for key in cOrderTotal2["Name"]:
+                    for key in cOrderTotal2["Name"]: #cycling through each entry and deleting dupliocates
                         if key not in CT2:
                             CT2 = key
                     CT3 = ''
-                    for key in cOrderTotal3["Name"]:
+                    for key in cOrderTotal3["Name"]: #cycling through each entry and deleting dupliocates
                         if key not in CT3:
                             CT3 = key
                     CT4 = ''
-                    for key in cOrderTotal4["Name"]:
+                    for key in cOrderTotal4["Name"]: #cycling through each entry and deleting dupliocates
                         if key not in CT4:
                             CT4 = key
                     CT5 = ''
-                    for key in cOrderTotal5["Name"]:
+                    for key in cOrderTotal5["Name"]: #cycling through each entry and deleting dupliocates
                         if key not in CT5:
                             CT5 = key
                     CT6 = ''
-                    for key in cOrderTotal6["Name"]:
+                    for key in cOrderTotal6["Name"]: #cycling through each entry and deleting dupliocates
                         if key not in CT6:
                             CT6 = key
                     
@@ -263,27 +263,27 @@ def delivy (x) :
                     taxTime(grand)
                     headers = ['Items', 'Quantity', 'Unit Price', 'Sub Total']    #tabulate
                     CT1 = ''
-                    for key in cOrderTotal1["Name"]:
+                    for key in cOrderTotal1["Name"]: #cycling through each entry and deleting dupliocates
                         if key not in CT1:
                             CT1 = key
                     CT2 = ''
-                    for key in cOrderTotal2["Name"]:
+                    for key in cOrderTotal2["Name"]: #cycling through each entry and deleting dupliocates
                         if key not in CT2:
                             CT2 = key
                     CT3 = ''
-                    for key in cOrderTotal3["Name"]:
+                    for key in cOrderTotal3["Name"]: #cycling through each entry and deleting dupliocates
                         if key not in CT3:
                             CT3 = key
                     CT4 = ''
-                    for key in cOrderTotal4["Name"]:
+                    for key in cOrderTotal4["Name"]: #cycling through each entry and deleting dupliocates
                         if key not in CT4:
                             CT4 = key
                     CT5 = ''
-                    for key in cOrderTotal5["Name"]:
+                    for key in cOrderTotal5["Name"]: #cycling through each entry and deleting dupliocates
                         if key not in CT5:
                             CT5 = key
-                    CT6 = ''
-                    for key in cOrderTotal6["Name"]:
+                    CT6 = '' 
+                    for key in cOrderTotal6["Name"]: #cycling through each entry and deleting dupliocates
                         if key not in CT6:
                             CT6 = key
                   
