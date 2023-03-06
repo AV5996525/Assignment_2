@@ -8,18 +8,9 @@
 #program will ask user to confirm their order and student status. It will prompt for an appropriate entry using y, Y, n, N only.
 #If user does not confirm the order, they CAN re enter their selection.
 #A receipt will be outputted once the user completes the order.
-#final = (sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])
-#print(final)
-#def gc () : 
-    #cOrderTotal["Name"].append("Grilled Cheese")
-    #cOrderTotal["Quantity"].append(1)
-    #print(cOrderTotal)
-    #return cOrderTotal
- #[et.split(',')[0] for et in new_listZ]
-#print(items[2]['Hot dog'])
-new_list = []
-custInfo = {"Name":[], "Phone":[], "City":[], "Province":[], "Postal Code":[], "Address":[],"Instructions":[]}
-custInfo["Name"].append(input("Enter your name:"))
+new_list = [] #intitalizing empty list
+custInfo = {"Name":[], "Phone":[], "City":[], "Province":[], "Postal Code":[], "Address":[],"Instructions":[]} #dictionary for customer information
+custInfo["Name"].append(input("Enter your name:"))  #Accepting input for customer information dictionary 
 custInfo["Phone"].append(input("Enter your phone number:"))
 custInfo["City"].append(input("Enter your current city:"))
 custInfo["Province"].append(input("Enter your current province:"))
@@ -27,14 +18,14 @@ custInfo["Postal Code"].append(input("Enter your current postal code:"))
 custInfo["Address"].append(input("Enter your current address:"))
 custInfo["Instructions"].append(input("Enter your requests if applicable:"))
 from tabulate import tabulate
-def mm ():
+def mm (): # creating main menu function
     new_list = []
     
     
     
-    cOrderSel = str(input("Welcome friends").strip())    
+    cOrderSel = str(input("Welcome friends").strip())    #order selection and user input
     if cOrderSel == '1' : 
-        cOrderTotal1["Name"].append("Grilled cheese")
+        cOrderTotal1["Name"].append("Grilled cheese") #adding entry to dictionary for order selection 
         a = int(input("How many"))
         
         cOrderTotal1["Quantity"].append(a)
@@ -83,7 +74,7 @@ def mm ():
         new_list = list(set(cOrderTotalX)) #removing duplicate by converting to set then list
 
         print(new_list)
-        while True:
+        while True: #intializing loop to prompt valid input
             confirm1 = input("Are you sure you want to check out")
             
             if confirm1 == "Y" or confirm1 == "y":
@@ -172,7 +163,7 @@ def delivy (x) :
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
-                print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip','Tax', 'Total','Grand Total'],floatfmt=".2f"))
+                print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand), str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip','Tax', 'Total','Grand Total'],floatfmt=".2f"))
                 
             elif (subT) >= 100 and 500 > (subT) :
                 discnt10 = (.10*(subT))
