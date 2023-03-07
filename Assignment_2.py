@@ -19,9 +19,9 @@ custInfo["City"].append(input("Enter your current city:"))
 custInfo["Province"].append(input("Enter your current province:"))
 custInfo["Postal Code"].append(input("Enter your current postal code:"))
 custInfo["Address"].append(input("Enter your current address:"))
-custInfoNon = {}
-custInfoNon = custInfo["Name"]
-custInfoNon = custInfo["Phone"]
+custInfoNon = {}#TRY DEL POP
+
+
 
 from tabulate import tabulate
 def mm (): # creating main menu function
