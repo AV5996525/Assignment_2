@@ -12,13 +12,13 @@ new_list = [] #intitalizing empty list
 custInfo = {"Name":[], "Phone":[], "City":[], "Province":[], "Postal Code":[], "Address":[],"Instructions":[]} #dictionary for customer information
 msg = "Thanks for choosing Arnold's Amazing Eats II"                   #Thank you message to be printed at end of completed order
 print("Welcome to Arnold's Amazing Eats II \nHome of the best food in Waterloo! \nThis app will simply help you make an order!")   #welcome greeting
+print("Waived delivery charge of $5 on orders exceeding $30\nEnjoy a 5% discount on orders under $100\nEnjoy a 10% discount on orders over $100\nEnjoy a 15% discount on orders over $500")
 custInfo["Name"].append(input("Enter your name:"))  #Accepting input for customer information dictionary 
 custInfo["Phone"].append(input("Enter your phone number:"))
 custInfo["City"].append(input("Enter your current city:"))
 custInfo["Province"].append(input("Enter your current province:"))
 custInfo["Postal Code"].append(input("Enter your current postal code:"))
 custInfo["Address"].append(input("Enter your current address:"))
-custInfo["Instructions"].append(input("Enter your requests if applicable:"))
 from tabulate import tabulate
 def mm (): # creating main menu function
     new_list = []
@@ -121,14 +121,14 @@ def delivy (x) : #final delivery/discount calculator
  while True :
         deliv = input("Would you like to have this order delivered Y/N?") #Asking user for delivery confirmation
         if deliv == "Y" :
-            
+            custInfo["Instructions"].append("Yes")
             subT =  (x)
             
             if (subT) > 500: #discount threshold
                 discnt15 = (.15*(subT))
                 print("Enjoy a 15% discount on orders over $500 & a waived delivery charge of $5!")
                 grand = ((subT) - discnt15 -5)  #discount and  delivery calculation
-                
+                custInfo["Instructions"].append("Free Delivery")
                 tip = float(input("Tip the delivery person 10% 15% or 20%"))
                 tipC(tip,subT)
                 
@@ -167,7 +167,7 @@ def delivy (x) : #final delivery/discount calculator
                 period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
                 ecc = [((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])), ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])), ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])), ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])),((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])),((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))]                         
                 table = zip(amp, mass, period, ecc)
-                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Requests"] #customer information headers
+                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Delivery"] #customer information headers
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
@@ -176,6 +176,7 @@ def delivy (x) : #final delivery/discount calculator
             elif (subT) >= 100 and 500 > (subT) : #discount threshold
                 discnt10 = (.10*(subT))
                 print("Enjoy a 10% discount on orders over $100 & a waived delivery charge of $5!")
+                custInfo["Instructions"].append("Free Delivery")
                 grand = ((subT) - discnt10 -5)
                 
                 tip = float(input("Tip the delivery person 10% 15% or 20%"))
@@ -212,7 +213,7 @@ def delivy (x) : #final delivery/discount calculator
                 period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
                 ecc = [((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])), ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])), ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])), ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])),((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])),((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))]                         
                 table = zip(amp, mass, period, ecc)
-                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Requests"]
+                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Delivery"]
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
@@ -223,6 +224,7 @@ def delivy (x) : #final delivery/discount calculator
                     discnt5 = (.05*(subT))
                     grand = ((subT) - discnt5 -5)
                     print("Enjoy a 5% discount on orders under $100 & a waived delivery charge of $5!")
+                    custInfo["Instructions"].append("Free Delivery")
                     tip = float(input("Tip the delivery person 10% 15% or 20%"))
                     tipC(tip,subT)
                     taxTime(grand)
@@ -257,7 +259,7 @@ def delivy (x) : #final delivery/discount calculator
                     period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
                     ecc = [((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])), ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])), ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])), ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])),((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])),((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))]                         
                     table = zip(amp, mass, period, ecc)
-                    custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Requests"]
+                    custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Delivery"]
                     print(tabulate(custInfo, headers = custHead))
                     print(tabulate(table, headers=headers, floatfmt=".2f"))
                     
@@ -266,6 +268,7 @@ def delivy (x) : #final delivery/discount calculator
                     discnt5 = (.05*(subT))
                     grand = ((subT) - discnt5 + 5)
                     print("Enjoy a 5% discount on orders under $100")
+                    custInfo["Instructions"].append("+ $5 Delivery Charge")
                     tip = float(input("Tip the delivery person 10% 15% or 20%"))
                     tipC(tip,subT)
                     taxTime(grand)
@@ -367,14 +370,14 @@ def delivy (x) : #final delivery/discount calculator
                     period = [UP1,UP2 ,UP3 ,UP4 ,UP5,UP6]    
                     ecc = [ST1, ST2, ST3,ST4,ST5,ST6]                         
                     table = zip(amp, mass, period, ecc)
-                    custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Requests"]
+                    custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Delivery"]
                     print(tabulate(custInfo, headers = custHead))
                     print(tabulate(table, headers=headers, floatfmt=".2f"))
                     
                     print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip($)','Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
                     
         if deliv == "N" :
-            
+            custInfo["Instructions"].append("No")
             subT = (x) 
             if (subT) > 500: #$500 threshold
                 discnt15 = (.15*(subT))
@@ -383,6 +386,42 @@ def delivy (x) : #final delivery/discount calculator
                 tip = float(input("Tip the delivery person 10% 15% or 20%"))
                 taxTime(grand)
                 headers = ['Items', 'Quantity', 'Unit Price($)', 'Sub Total($)']    #tabulate
+                UP1 = ''
+                UP2 = ''
+                UP3 = ''
+                UP4 = ''
+                UP5 = ''
+                UP6 = ''
+                UP1 = (items[1]['Grilled cheese'])
+                UP2 = (items[2]['Hot dog'])
+                UP3 = (items[3]['Sushi'])
+                UP4 = (items[4]['Butter chicken'])
+                UP5 = (items[5]['Greek salad'])
+                UP6 = (items[6]['Poutine'])
+                QP1 = ''
+                QP2 = ''
+                QP3 = ''
+                QP4 = ''
+                QP5 = ''
+                QP6 = ''
+                QP1 = sum(cOrderTotal1["Quantity"])
+                QP2 = sum(cOrderTotal2["Quantity"])
+                QP3 = sum(cOrderTotal3["Quantity"])
+                QP4 = sum(cOrderTotal4["Quantity"])
+                QP5 = sum(cOrderTotal5["Quantity"])
+                QP6 = sum(cOrderTotal6["Quantity"])
+                ST1 = ''
+                ST2 = ''
+                ST3 = ''
+                ST4 = ''
+                ST5 = ''
+                ST6 = ''
+                ST1 = ((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese']))
+                ST2 = ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog']))
+                ST3 = ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi']))
+                ST4 = ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken']))
+                ST5 = ((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad']))
+                ST6 = ((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))
                 CT1 = ''
                 for key in cOrderTotal1["Name"]: #cycling through each entry and deleting duplicates
                     if key not in CT1:
@@ -408,12 +447,39 @@ def delivy (x) : #final delivery/discount calculator
                     if key not in CT6:
                         CT6 = key
                
+                if (sum(cOrderTotal1["Quantity"])) == 0:
+                    UP1 = ''
+                    QP1 = ''
+                    ST1 = ''
+                if (sum(cOrderTotal2["Quantity"])) == 0:
+                    QP2 = ''
+                    UP2 = ''
+                    ST2 = ''
+                if (sum(cOrderTotal3["Quantity"])) == 0:
+                    UP3 = ''
+                    QP3 = ''
+                    ST3 = ''
+                if (sum(cOrderTotal4["Quantity"])) == 0:
+                    UP4 = ''
+                    QP4 = ''
+                    ST4 = ''
+                if (sum(cOrderTotal5["Quantity"])) == 0:
+                    UP5 = ''
+                    QP5 = ''
+                    ST5 = ''
+                if (sum(cOrderTotal6["Quantity"])) == 0:
+                    UP6 = ''
+                    QP6 = ''
+                    ST6 = ''                    
+                    
+                     
                 amp = [CT1,CT2,CT3,CT4,CT5,CT6]
-                mass = [sum(cOrderTotal1["Quantity"]), sum(cOrderTotal2["Quantity"]), sum(cOrderTotal3["Quantity"]), sum(cOrderTotal4["Quantity"]), sum(cOrderTotal5["Quantity"]), sum(cOrderTotal6["Quantity"])]    
-                period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
-                ecc = [((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])), ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])), ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])), ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])),((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])),((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))]                         
+                mass = [QP1, QP2, QP3, QP4, QP5, QP6]    
+                     
+                period = [UP1,UP2 ,UP3 ,UP4 ,UP5,UP6]    
+                ecc = [ST1, ST2, ST3,ST4,ST5,ST6]              
                 table = zip(amp, mass, period, ecc)
-                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Requests"]
+                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Delivery"]
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
@@ -425,6 +491,42 @@ def delivy (x) : #final delivery/discount calculator
                 tip = float(input("Tip the delivery person 10% 15% or 20%"))
                 taxTime(grand)
                 headers = ['Items', 'Quantity', 'Unit Price($)', 'Sub Total($)']    #tabulate
+                UP1 = ''
+                UP2 = ''
+                UP3 = ''
+                UP4 = ''
+                UP5 = ''
+                UP6 = ''
+                UP1 = (items[1]['Grilled cheese'])
+                UP2 = (items[2]['Hot dog'])
+                UP3 = (items[3]['Sushi'])
+                UP4 = (items[4]['Butter chicken'])
+                UP5 = (items[5]['Greek salad'])
+                UP6 = (items[6]['Poutine'])
+                QP1 = ''
+                QP2 = ''
+                QP3 = ''
+                QP4 = ''
+                QP5 = ''
+                QP6 = ''
+                QP1 = sum(cOrderTotal1["Quantity"])
+                QP2 = sum(cOrderTotal2["Quantity"])
+                QP3 = sum(cOrderTotal3["Quantity"])
+                QP4 = sum(cOrderTotal4["Quantity"])
+                QP5 = sum(cOrderTotal5["Quantity"])
+                QP6 = sum(cOrderTotal6["Quantity"])
+                ST1 = ''
+                ST2 = ''
+                ST3 = ''
+                ST4 = ''
+                ST5 = ''
+                ST6 = ''
+                ST1 = ((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese']))
+                ST2 = ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog']))
+                ST3 = ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi']))
+                ST4 = ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken']))
+                ST5 = ((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad']))
+                ST6 = ((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))
                 CT1 = ''
                 for key in cOrderTotal1["Name"]: #cycling through each entry and deleting duplicates
                     if key not in CT1:
@@ -449,13 +551,40 @@ def delivy (x) : #final delivery/discount calculator
                 for key in cOrderTotal6["Name"]: #cycling through each entry and deleting duplicates
                     if key not in CT6:
                         CT6 = key
-                
+                if (sum(cOrderTotal1["Quantity"])) == 0:
+                    UP1 = ''
+                    QP1 = ''
+                    ST1 = ''
+                if (sum(cOrderTotal2["Quantity"])) == 0:
+                    QP2 = ''
+                    UP2 = ''
+                    ST2 = ''
+                if (sum(cOrderTotal3["Quantity"])) == 0:
+                    UP3 = ''
+                    QP3 = ''
+                    ST3 = ''
+                if (sum(cOrderTotal4["Quantity"])) == 0:
+                    UP4 = ''
+                    QP4 = ''
+                    ST4 = ''
+                if (sum(cOrderTotal5["Quantity"])) == 0:
+                    UP5 = ''
+                    QP5 = ''
+                    ST5 = ''
+                if (sum(cOrderTotal6["Quantity"])) == 0:
+                    UP6 = ''
+                    QP6 = ''
+                    ST6 = ''                    
+                    
+                     
                 amp = [CT1,CT2,CT3,CT4,CT5,CT6]
-                mass = [sum(cOrderTotal1["Quantity"]), sum(cOrderTotal2["Quantity"]), sum(cOrderTotal3["Quantity"]), sum(cOrderTotal4["Quantity"]), sum(cOrderTotal5["Quantity"]), sum(cOrderTotal6["Quantity"])]    
-                period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
-                ecc = [((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])), ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])), ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])), ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])),((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])),((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))]                         
+                mass = [QP1, QP2, QP3, QP4, QP5, QP6]    
+                     
+                period = [UP1,UP2 ,UP3 ,UP4 ,UP5,UP6]    
+                ecc = [ST1, ST2, ST3,ST4,ST5,ST6]              
+                             
                 table = zip(amp, mass, period, ecc)
-                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Requests"]
+                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Delivery"]
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
@@ -467,6 +596,42 @@ def delivy (x) : #final delivery/discount calculator
                 tip = float(input("Tip the delivery person 10% 15% or 20%"))
                 taxTime(grand)
                 headers = ['Items', 'Quantity', 'Unit Price($)', 'Sub Total($)']    #tabulate
+                UP1 = ''
+                UP2 = ''
+                UP3 = ''
+                UP4 = ''
+                UP5 = ''
+                UP6 = ''
+                UP1 = (items[1]['Grilled cheese'])
+                UP2 = (items[2]['Hot dog'])
+                UP3 = (items[3]['Sushi'])
+                UP4 = (items[4]['Butter chicken'])
+                UP5 = (items[5]['Greek salad'])
+                UP6 = (items[6]['Poutine'])
+                QP1 = ''
+                QP2 = ''
+                QP3 = ''
+                QP4 = ''
+                QP5 = ''
+                QP6 = ''
+                QP1 = sum(cOrderTotal1["Quantity"])
+                QP2 = sum(cOrderTotal2["Quantity"])
+                QP3 = sum(cOrderTotal3["Quantity"])
+                QP4 = sum(cOrderTotal4["Quantity"])
+                QP5 = sum(cOrderTotal5["Quantity"])
+                QP6 = sum(cOrderTotal6["Quantity"])
+                ST1 = ''
+                ST2 = ''
+                ST3 = ''
+                ST4 = ''
+                ST5 = ''
+                ST6 = ''
+                ST1 = ((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese']))
+                ST2 = ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog']))
+                ST3 = ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi']))
+                ST4 = ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken']))
+                ST5 = ((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad']))
+                ST6 = ((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))
                 CT1 = ''
                 for key in cOrderTotal1["Name"]: #cycling through each entry and deleting duplicates
                     if key not in CT1:
@@ -491,13 +656,41 @@ def delivy (x) : #final delivery/discount calculator
                 for key in cOrderTotal6["Name"]: #cycling through each entry and deleting duplicates
                     if key not in CT6:
                         CT6 = key
-                
+                if (sum(cOrderTotal1["Quantity"])) == 0:
+                    UP1 = ''
+                    QP1 = ''
+                    ST1 = ''
+                if (sum(cOrderTotal2["Quantity"])) == 0:
+                    QP2 = ''
+                    UP2 = ''
+                    ST2 = ''
+                if (sum(cOrderTotal3["Quantity"])) == 0:
+                    UP3 = ''
+                    QP3 = ''
+                    ST3 = ''
+                if (sum(cOrderTotal4["Quantity"])) == 0:
+                    UP4 = ''
+                    QP4 = ''
+                    ST4 = ''
+                if (sum(cOrderTotal5["Quantity"])) == 0:
+                    UP5 = ''
+                    QP5 = ''
+                    ST5 = ''
+                if (sum(cOrderTotal6["Quantity"])) == 0:
+                    UP6 = ''
+                    QP6 = ''
+                    ST6 = ''                    
+                    
+                     
                 amp = [CT1,CT2,CT3,CT4,CT5,CT6]
-                mass = [sum(cOrderTotal1["Quantity"]), sum(cOrderTotal2["Quantity"]), sum(cOrderTotal3["Quantity"]), sum(cOrderTotal4["Quantity"]), sum(cOrderTotal5["Quantity"]), sum(cOrderTotal6["Quantity"])]    
-                period = [(items[1]['Grilled cheese']), (items[2]['Hot dog']), (items[3]['Sushi']), (items[4]['Butter chicken']),(items[5]['Greek salad']),(items[6]['Poutine'])]    
-                ecc = [((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])), ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])), ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])), ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])),((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])),((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))]                         
+                mass = [QP1, QP2, QP3, QP4, QP5, QP6]    
+                     
+                period = [UP1,UP2 ,UP3 ,UP4 ,UP5,UP6]    
+                ecc = [ST1, ST2, ST3,ST4,ST5,ST6]  
+                amp = [CT1,CT2,CT3,CT4,CT5,CT6]
+                              
                 table = zip(amp, mass, period, ecc)
-                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Requests"]
+                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Delivery"]
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
