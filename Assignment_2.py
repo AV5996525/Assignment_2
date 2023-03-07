@@ -130,7 +130,7 @@ def delivy (x) : #final delivery/discount calculator
  while True :
         deliv = input("Would you like to have this order delivered Y/N?") #Asking user for delivery confirmation
         if deliv == "Y" :
-            custInfo["Instructions"].append("Yes")
+            custInfo["Instructions"].append(input("Please enter your delivery instructions:\n"))
             subT =  (x)
             
             if (subT) > 500: #discount threshold
@@ -575,6 +575,7 @@ def delivy (x) : #final delivery/discount calculator
                     print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip($)','Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
                     print("You Saved $",round(discnt5,2),"\nThank you for choosing Arnold's Amazing Eats II")
         if deliv == "N" :
+            del custInfo["City"], custInfo["Province"],custInfo["Postal Code"],custInfo["Address"]
             custInfo["Instructions"].append("Pick up")
             subT = (x) 
             if (subT) > 500: #$500 threshold
@@ -677,7 +678,7 @@ def delivy (x) : #final delivery/discount calculator
                 period = [UP1,UP2 ,UP3 ,UP4 ,UP5,UP6]    
                 ecc = [ST1, ST2, ST3,ST4,ST5,ST6]              
                 table = zip(amp, mass, period, ecc)
-                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Delivery"]
+                custHead = ["Name", "Phone","Instructions"]
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
@@ -783,7 +784,7 @@ def delivy (x) : #final delivery/discount calculator
                 ecc = [ST1, ST2, ST3,ST4,ST5,ST6]              
                              
                 table = zip(amp, mass, period, ecc)
-                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Delivery"]
+                custHead = ["Name", "Phone","Instructions"]
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 print("You Saved $",round(discnt10,2),"\nThank you for choosing Arnold's Amazing Eats II")
@@ -889,7 +890,7 @@ def delivy (x) : #final delivery/discount calculator
                 amp = [CT1,CT2,CT3,CT4,CT5,CT6]
                               
                 table = zip(amp, mass, period, ecc)
-                custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Delivery"]
+                custHead = ["Name", "Phone","Instructions"]
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
