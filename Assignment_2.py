@@ -117,7 +117,9 @@ def tipC(J,K): #tip calculator
         tipA = .15 * (K) 
     if (J) == 20 :
         tipA = .20 * (K)
-    
+    if (J) != 10 and (J) != 15 and (J) != 5 :
+        print("Invalid tip amount 10% or 15% or 20% only!")
+        mm()
     return tipA 
 def delivy (x) : #final delivery/discount calculator
 
@@ -238,7 +240,7 @@ def delivy (x) : #final delivery/discount calculator
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
                 print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand), str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip($)','Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
-                print("You Saved $",discnt15,"\nThank you for choosing Arnold's Amazing Eats II")
+                print("You Saved $",round(discnt15,2),"\nThank you for choosing Arnold's Amazing Eats II")
             elif (subT) >= 100 and 500 > (subT) : #discount threshold
                 discnt10 = (.10*(subT))
                 print("Enjoy a 10% discount on orders over $100 & a waived delivery charge of $5!")
@@ -347,7 +349,7 @@ def delivy (x) : #final delivery/discount calculator
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
                 print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip($)','Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
-                print("You Saved $",discnt10,"\nThank you for choosing Arnold's Amazing Eats II")
+                print("You Saved $",round(discnt10,2),"\nThank you for choosing Arnold's Amazing Eats II")
             elif (subT) < 500 : #discount threshold for orders under $500
                 if subT > 30:
                     discnt5 = (.05*(subT))
@@ -455,7 +457,7 @@ def delivy (x) : #final delivery/discount calculator
                     print(tabulate(table, headers=headers, floatfmt=".2f"))
                     
                     print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip($)','Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
-                    print("You Saved $",discnt5,"\nThank you for choosing Arnold's Amazing Eats II")
+                    print("You Saved $",round(discnt5,2),"\nThank you for choosing Arnold's Amazing Eats II")
                 if subT < 30: # under $30 threshold
                     discnt5 = (.05*(subT))
                     grand = ((subT) - discnt5 + 5)
@@ -567,9 +569,9 @@ def delivy (x) : #final delivery/discount calculator
                     print(tabulate(table, headers=headers, floatfmt=".2f"))
                     
                     print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip($)','Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
-                    print("You Saved $",discnt5,"\nThank you for choosing Arnold's Amazing Eats II")
+                    print("You Saved $",round(discnt5,2),"\nThank you for choosing Arnold's Amazing Eats II")
         if deliv == "N" :
-            custInfo["Instructions"].append("No")
+            custInfo["Instructions"].append("Pick up")
             subT = (x) 
             if (subT) > 500: #$500 threshold
                 discnt15 = (.15*(subT))
@@ -676,7 +678,7 @@ def delivy (x) : #final delivery/discount calculator
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
                 print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip($)','Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
-                print("You Saved $",discnt15,"\nThank you for choosing Arnold's Amazing Eats II")
+                print("You Saved $",round(discnt15,2),"\nThank you for choosing Arnold's Amazing Eats II")
             elif (subT) >= 100 and 500 > (subT) :
                 discnt10 = (.10*(subT))
                 grand = ((subT) - discnt10)
@@ -780,7 +782,7 @@ def delivy (x) : #final delivery/discount calculator
                 custHead = ["Name", "Phone", "City", "Province", "Postal", "Address","Delivery"]
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
-                print("You Saved $",discnt10,"\nThank you for choosing Arnold's Amazing Eats II")
+                print("You Saved $",round(discnt10,2),"\nThank you for choosing Arnold's Amazing Eats II")
                 print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip($)','Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
             elif (subT) < 500 :
                 discnt5 = (.05*(subT))
@@ -888,7 +890,7 @@ def delivy (x) : #final delivery/discount calculator
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
                 print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip($)','Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
-                print("You Saved $",discnt5,"\nThank you for choosing Arnold's Amazing Eats II")
+                print("You Saved $",round(discnt5,2),"\nThank you for choosing Arnold's Amazing Eats II")
             break
         elif deliv.isdigit() :
                 print("Invalid response. No numbers!")   
