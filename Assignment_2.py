@@ -19,7 +19,7 @@ custInfo["City"].append(input("Enter your current city:"))
 custInfo["Province"].append(input("Enter your current province:"))
 custInfo["Postal Code"].append(input("Enter your current postal code:"))
 custInfo["Address"].append(input("Enter your current address:"))
-custInfoNon = {}#TRY DEL POP
+
 
 
 
