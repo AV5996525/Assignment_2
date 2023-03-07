@@ -1,7 +1,7 @@
 #Name:          Assignment_2.py
 #Author:        AJ Varatharajan
 #Date Created:  February 28, 2023
-#Date Last Modified: March 4, 2023
+#Date Last Modified: March 6, 2023
 #Purpose: 
 #This program will accept user input to fill out fields regarding their personal information.
 #The user will be able to select MULTIPLE items. 
@@ -19,6 +19,10 @@ custInfo["City"].append(input("Enter your current city:"))
 custInfo["Province"].append(input("Enter your current province:"))
 custInfo["Postal Code"].append(input("Enter your current postal code:"))
 custInfo["Address"].append(input("Enter your current address:"))
+custInfoNon = {}
+custInfoNon = custInfo["Name"]
+custInfoNon = custInfo["Phone"]
+
 from tabulate import tabulate
 def mm (): # creating main menu function
     new_list = []
@@ -79,7 +83,7 @@ def mm (): # creating main menu function
        
         new_list = list(set(cOrderTotalX)) #removing duplicate by converting to set then list
 
-        print(new_list)
+        print(new_list) 
         while True: #intializing loop to prompt valid input
             confirm1 = input("Are you sure you want to check out Y/N ?")
             
@@ -577,7 +581,7 @@ def delivy (x) : #final delivery/discount calculator
                 discnt15 = (.15*(subT))
                 print("Enjoy a 15% discount on orders over $500")
                 grand = ((subT) - discnt15)
-                tip = float(input("Tip the delivery person 10% 15% or 20%"))
+                
                 taxTime(grand)
                 headers = ['Items', 'Quantity', 'Unit Price($)', 'Sub Total($)']    #tabulate
                 UP1 = ''
@@ -677,13 +681,13 @@ def delivy (x) : #final delivery/discount calculator
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
-                print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip($)','Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
+                print(tabulate([[  str(taxTime(grand)), str(grand),str(taxTime(grand)+grand)]], headers = ['Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
                 print("You Saved $",round(discnt15,2),"\nThank you for choosing Arnold's Amazing Eats II")
             elif (subT) >= 100 and 500 > (subT) :
                 discnt10 = (.10*(subT))
                 grand = ((subT) - discnt10)
                 print("Enjoy a 10% discount on orders over $100")
-                tip = float(input("Tip the delivery person 10% 15% or 20%"))
+                
                 taxTime(grand)
                 headers = ['Items', 'Quantity', 'Unit Price($)', 'Sub Total($)']    #tabulate
                 UP1 = ''
@@ -783,12 +787,12 @@ def delivy (x) : #final delivery/discount calculator
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 print("You Saved $",round(discnt10,2),"\nThank you for choosing Arnold's Amazing Eats II")
-                print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip($)','Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
+                print(tabulate([[  str(taxTime(grand)), str(grand),str(taxTime(grand)+grand)]], headers = ['Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
             elif (subT) < 500 :
                 discnt5 = (.05*(subT))
                 grand = ((subT) - discnt5)
                 print("Enjoy a 5% discount on orders under $100")
-                tip = float(input("Tip the delivery person 10% 15% or 20%"))
+                
                 taxTime(grand)
                 headers = ['Items', 'Quantity', 'Unit Price($)', 'Sub Total($)']    #tabulate
                 UP1 = ''
@@ -889,7 +893,7 @@ def delivy (x) : #final delivery/discount calculator
                 print(tabulate(custInfo, headers = custHead))
                 print(tabulate(table, headers=headers, floatfmt=".2f"))
                 
-                print(tabulate([[ str(tipC(tip,subT)), str(taxTime(grand)), str(grand),str(taxTime(grand)+tipC(tip,subT)+grand)]], headers = ['Tip($)','Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
+                print(tabulate([[  str(taxTime(grand)), str(grand),str(taxTime(grand)+grand)]], headers = ['Tax($)', 'Total($)','Grand Total($)'],floatfmt=".2f"))
                 print("You Saved $",round(discnt5,2),"\nThank you for choosing Arnold's Amazing Eats II")
             break
         elif deliv.isdigit() :
