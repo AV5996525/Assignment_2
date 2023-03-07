@@ -86,6 +86,9 @@ def mm (): # creating main menu function
             if confirm1 == "Y" or confirm1 == "y":
                 subT = 0
                 final = (((sum(cOrderTotal1["Quantity"])) * (items[1]['Grilled cheese'])) + ((sum(cOrderTotal2["Quantity"])) * (items[2]['Hot dog'])) + ((sum(cOrderTotal3["Quantity"])) * (items[3]['Sushi'])) + ((sum(cOrderTotal4["Quantity"])) * (items[4]['Butter chicken'])) + ((sum(cOrderTotal5["Quantity"])) * (items[5]['Greek salad'])) + ((sum(cOrderTotal6["Quantity"])) * (items[6]['Poutine']))) #sub total calculation
+                if final == 0:
+                    print("Empty Cart, try your order again!")
+                    mm()
                 delivy(x = final)   #passing subtotal amount through delivery function
                 continue
                 
