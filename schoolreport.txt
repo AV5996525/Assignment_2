@@ -1,7 +1,9 @@
+('First name', 'spic')
+('Last name', 'jew ')
+('Student #', 'fuck')
+('Course selection', ['CRE1342', 'SCL1020', 'ENG1221'])
+('Total #', '3')
+These are your confirmed courses:
 Careers
 Sociology
 English
-t name', 'sdas')
-('Student #', 'asd')
-('Course selection', ['CRE1342', 'SCL1020', 'ENG1221'])
-('Total #', '3')
