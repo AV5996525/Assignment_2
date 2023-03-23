@@ -1,6 +1,6 @@
-('First name', 'NIGGER')
-('Last name', 'SPOOK')
-('Student #', 'USAMA')
-('Course selection', ['ENG1221', 'CRE1342', 'SCL1020'])
-('Course name list', 'Careers')
-('Total #', '3')
+('First name', 'FAg')
+These are your confirmed courses: ['English', 'Careers']('Last name', 'ass')
+These are your confirmed courses: ['English', 'Careers']('Student #', 'mogger')
+These are your confirmed courses: ['English', 'Careers']('Course selection', ['ENG1221', 'CRE1342', 'SCL1020'])
+These are your confirmed courses: ['English', 'Careers']('Total #', '3')
+These are your confirmed courses: ['English', 'Careers']
