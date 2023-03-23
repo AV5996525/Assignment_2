@@ -1,6 +1,5 @@
 ('First name', 'FUCK')
-These are your confirmed courses: ['Careers']('Last name', 'NIGGER')
-These are your confirmed courses: ['Careers']('Student #', 'ASS')
-These are your confirmed courses: ['Careers']('Course selection', ['CRE1342', 'ENG1221'])
-These are your confirmed courses: ['Careers']('Total #', '2')
-These are your confirmed courses: ['Careers']
+('Last name', 'NIGGERs')
+('Student #', 'SPICZ')
+('Course selection', ['CRE1342', 'SCL1020', 'NTB3070'])
+('Total #', '3')
