@@ -1,0 +1,10 @@
+('First name', 'NIGGER')
+These are your selected courses English
+('Last name', 'GOOK')
+These are your selected courses English
+('Student #', 'SPIC')
+These are your selected courses English
+('Course selection', ['CRE1342', 'ENG1221', 'NTB3070'])
+These are your selected courses English
+('Total #', '3')
+These are your selected courses English
