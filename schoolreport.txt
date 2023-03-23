@@ -1,0 +1,9 @@
+('First name', 'AJ')
+('Last name', 'MANGO')
+('Student #', '123456')
+('Course selection', ['ENG1221', 'CRE1342'])
+('Total #', '2')
+These are your confirmed courses:
+English	ENG1221
+Careers	CRE1342
+-------------------------------
